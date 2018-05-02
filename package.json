@@ -11,7 +11,10 @@
   "author": "Cedric Nicoloso <cedric.nicoloso@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "request": "^2.85.0"
+    "algoliasearch": "^3.27.0",
+    "cheerio": "^1.0.0-rc.2",
+    "request": "^2.85.0",
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {
     "chai": "^4.1.2",

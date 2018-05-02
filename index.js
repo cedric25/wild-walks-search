@@ -1,6 +1,7 @@
 const rp = require('request-promise')
-const cheerio = require('cheerio')
 const fs = require('fs')
+const algoliasearch = require('algoliasearch')
+const { parse } = require('./parse')
 
 // Start from http://www.wildwalks.com/walks
 
@@ -11,27 +12,21 @@ const hikesList = [
 
 async function getHikes() {
   // curl 4 URLs (short, half day, etc...)
-  data = await rp.get(hikesList[0])
-  fs.writeFile('tests/test-data/input.html', data)
-  return parse(data)
+  const rawHtml = await rp.get(hikesList[0])
+  const data = parse(rawHtml)
+  return await pushAlgolia(data)
 }
 
 // Inject into JSDOM
 
-// Use jQuery to get all necessary info
-//  PARSING
-function parse(html) {
-  const $ = cheerio.load(html)
-  const namesList = $('.ww-box-htag-title a')
-    .map(function(index, content) {
-      return content.children[0].data.trim()
-    }).get()
-  const hikes = namesList.map(name => ({ name }))
-  return hikes
+const client = algoliasearch(process.env.username, process.env.password);
+const index = client.initIndex('wild-walks');
+
+function pushAlgolia(hikes) {
+  return new Promise((resolve, reject) => {
+    resolve(index.addObjects(hikes))
+  })
 }
-
-// Push to Algolia / ES?
-
 
 getHikes()
   .then(result => {
@@ -40,7 +35,3 @@ getHikes()
   .catch(err => {
     console.error(err)
   })
-
-module.exports = {
-  parse,
-}
