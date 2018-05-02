@@ -1,11 +1,13 @@
 const fs = require('fs')
+const path = require('path')
 const expect = require('chai').expect
 const { parse } = require('../parse')
 
 describe('parse ', () => {
   describe('When giving the entire html', () => {
 
-    const testData = fs.readFileSync('./tests/test-data/input.html')
+    const inputFilepath = path.join(__dirname, './test-data/input.html')
+    const testData = fs.readFileSync(inputFilepath)
 
     it('should give us a total of 245 hikes', function () {
       // When
