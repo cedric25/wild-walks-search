@@ -36,9 +36,13 @@ function extractLeftBoxInfo($, content) {
     }).get()
   const rawFirstLine = $(leftBox).find('p')[0].children[0].data
   const rawSecondLine = $(leftBox).find('p')[0].children[2].data
-  const distance = parseInt(rawFirstLine.split(' ')[0], 10)
+  const rawFirstLineSplit = rawFirstLine.split(' ')
+  const distance = parseDistance(parseInt(rawFirstLineSplit[0]), rawFirstLineSplit[1])
   const hikeType = rawFirstLine.split('m ')[1]
-  const duration = parseInt(rawSecondLine.split('m ')[0], 10)
+
+  const rawSecondLineSplit = rawSecondLine.split(' ')
+  const duration = parseDuration(parseInt(rawSecondLineSplit[0]), rawSecondLineSplit[1])
+
   return {
     distance,
     hikeType,
@@ -47,6 +51,32 @@ function extractLeftBoxInfo($, content) {
   }
 }
 
+function parseDistance(value, unit) {
+  return unit === 'm' ? value : value * 1000
+}
+
+function parseDuration(value, unit) {
+  const HIKING_HOURS_IN_A_DAY = 8
+  let minutes
+  if (unit === 'mins') {
+    minutes = value
+  } else if(unit === 'hrs') {
+    minutes = value * 60
+  } else if(unit === 'Days') {
+    minutes = value * 60 * HIKING_HOURS_IN_A_DAY
+  } else {
+    throw new Error(`Unknown unit ${unit}`)
+  }
+  return {
+    minutes,
+    raw: { value, unit }
+  }
+}
+
 module.exports = {
   parse,
+
+  // For test purpose
+  parseDistance,
+  parseDuration,
 }

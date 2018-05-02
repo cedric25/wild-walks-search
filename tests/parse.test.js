@@ -67,7 +67,7 @@ describe('parse ', () => {
       expect(results[0].distance).to.equal(556)
       results.forEach(hike => {
         expect(hike.distance).to.be.ok
-        expect(hike.distance).to.be.above(0)
+        expect(hike.distance).to.be.above(10)
       })
     })
 
@@ -88,10 +88,20 @@ describe('parse ', () => {
       const results = parse(testData)
 
       // Then
-      expect(results[0].duration).to.equal(20)
+      expect(results[0].duration).to.deep.equal({
+        minutes: 20,
+        raw: {
+          unit: 'mins',
+          value: 20
+        }
+      })
       results.forEach(hike => {
-        expect(hike.duration).to.be.ok
-        expect(hike.duration).to.be.above(0)
+        expect(hike.duration.minutes).to.be.above(0)
+        expect(hike.duration.raw.unit).to.be.oneOf([
+          'mins',
+          'hrs',
+          'Days'
+        ])
       })
     })
 
