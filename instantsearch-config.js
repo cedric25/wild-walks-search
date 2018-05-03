@@ -37,7 +37,13 @@ search.addWidget(
     container: '#hits',
     templates: {
       empty: 'No results',
-      item: '<em>Hit {{name}}</em>: {{{_highlightResult.name.value}}}'
+      item: `
+        <div>
+          <a href="{{ detailLink }}" target="_blank">
+            Hit {{ name }}
+          </a>: {{{ _highlightResult.name.value }}}
+        </div>
+      `
     }
   })
 )
