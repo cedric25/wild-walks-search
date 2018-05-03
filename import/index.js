@@ -1,26 +1,26 @@
 const rp = require('request-promise')
-const fs = require('fs')
 const algoliasearch = require('algoliasearch')
 const { parse } = require('./parse')
+
+const client = algoliasearch(process.env.username, process.env.password);
+const index = client.initIndex('wild-walks');
 
 // Start from http://www.wildwalks.com/walks
 
 const hikesList = [
   'http://www.wildwalks.com/lists/short_walks',
-  // TODO Add 3 other URLs
+  'http://www.wildwalks.com/list/half-day-walks.html',
+  'http://www.wildwalks.com/lists/full-day-walks.html',
+  'http://www.wildwalks.com/lists/multiday-walks-overnight-walks/',
 ]
 
 async function getHikes() {
-  // curl 4 URLs (short, half day, etc...)
-  const rawHtml = await rp.get(hikesList[0])
-  const data = parse(rawHtml)
-  return await pushAlgolia(data)
+  for (let i = 0; i < hikesList.length; i++) {
+    const rawHtml = await rp.get(hikesList[0])
+    const data = parse(rawHtml)
+    await pushAlgolia(data)
+  }
 }
-
-// Inject into JSDOM
-
-const client = algoliasearch(process.env.username, process.env.password);
-const index = client.initIndex('wild-walks');
 
 function pushAlgolia(hikes) {
   return new Promise((resolve, reject) => {
@@ -28,10 +28,9 @@ function pushAlgolia(hikes) {
   })
 }
 
-getHikes()
-  .then(result => {
-    console.log('result', result)
-  })
-  .catch(err => {
-    console.error(err)
-  })
+try {
+  getHikes()
+  console.log('result', result)
+} catch (err) {
+  console.error(err)
+}
