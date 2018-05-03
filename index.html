@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Wild Walks Search</title>
-  <link rel="stylesheet" type="text/css"
-        href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.7.3/dist/instantsearch.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.7.3/dist/instantsearch.min.css">
+  <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 
 <body>
@@ -12,39 +12,48 @@
     <!-- SearchBox widget will appear here -->
   </div>
 
-  <div id="hits">
+  <div class="criteria">
+
+    <div class="criteria-line">
+      <div>
+        <h3>Hike Type</h3>
+        <div id="refinement-hike-type" class="facet-box">
+          <!-- RefinementList widget will appear here -->
+        </div>
+      </div>
+
+      <div>
+        <h3>Accesses</h3>
+        <div id="refinement-accesses" class="facet-box">
+          <!-- RefinementList widget will appear here -->
+        </div>
+      </div>
+    </div>
+
+    <div class="criteria-line">
+      <div>
+        <h3>Distance (m)</h3>
+        <div id="range-slider-distance" class="facet-box">
+          <!-- rangeSlider widget will appear here -->
+        </div>
+      </div>
+
+      <div>
+        <h3>Duration (minutes)</h3>
+        <div id="range-slider-duration" class="facet-box">
+          <!-- rangeSlider widget will appear here -->
+        </div>
+      </div>
+    </div>
 
   </div>
 
+  <div id="hits">
+    <!-- Hits widget will appear here -->
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.7.3"></script>
-
-  <script>
-    const search = instantsearch({
-      appId: 'WETEHHP7BT',
-      apiKey: '0d048d028ac0fc01aabaf93d80b5ce22',
-      indexName: 'wild-walks',
-      urlSync: true
-    })
-    search.addWidget(
-      instantsearch.widgets.searchBox({
-        container: '#search-box',
-        placeholder: 'Search for wild walks'
-      })
-    )
-
-    search.addWidget(
-      instantsearch.widgets.hits({
-        container: '#hits',
-        templates: {
-          empty: 'No results',
-          item: '<em>Hit {{name}}</em>: {{{_highlightResult.name.value}}}'
-        }
-      })
-    )
-
-    search.start()
-
-  </script>
+  <script src="./instantsearch-config.js"></script>
 </body>
 
 </html>

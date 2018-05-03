@@ -1,0 +1,13 @@
+.criteria-line {
+    display: flex;
+}
+
+.criteria-line > div {
+    flex: 1;
+}
+
+.facet-box {
+    margin: 15px;
+    padding: 10px;
+    border: 1px solid grey;
+}
