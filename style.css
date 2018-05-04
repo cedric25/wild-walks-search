@@ -155,12 +155,17 @@ body {
     padding-left: 15px;
     font-weight: bold;
     font-size: 0.9em;
+    margin-top: -4px;
 }
 .one-hit .hike-info .hike-info-left p {
-    margin: 0;
+    margin: 0 0 5px;
 }
-.one-hit .hike-info .hike-info-left p:first-child {
-    margin-bottom: 5px;
+.one-hit .hike-info .hike-info-left p:last-child {
+    margin-bottom: 0;
+}
+.one-hit .hike-info .hike-info-left .climbing-arrow {
+    width: 10px;
+    margin-left: 3px;
 }
 /* ----- Right ----- */
 .one-hit .hike-info .hike-info-right {

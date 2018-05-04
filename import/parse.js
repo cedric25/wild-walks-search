@@ -16,6 +16,7 @@ function parseHikeHtml($, content) {
   const hikeDetailsLink = $(detailLink[0]).attr('href')
   const leftBox = extractLeftBoxInfo($, content)
   const rigthBox = extractRightBoxInfo($, content)
+  const hoverContent = extractHoverContent($, content)
   const rawMainImage = $(content).find('.ww-box-thumbnail-img')
   const rawElevationImage = $(content).find('.img-box-bottom')
   const elevationImage = $(rawElevationImage[0]).attr('src')
@@ -26,7 +27,7 @@ function parseHikeHtml($, content) {
     mainImage: $(rawMainImage[0]).attr('src'),
     elevationImage: `http://www.wildwalks.com${elevationImage}`,
   }
-  return Object.assign({}, main, leftBox, rigthBox)
+  return Object.assign({}, main, leftBox, rigthBox, hoverContent)
 }
 
 function extractLeftBoxInfo($, content) {
@@ -86,6 +87,14 @@ function extractRightBoxInfo($, content) {
     difficulty,
     difficultyLabel,
     wheelchair,
+  }
+}
+
+function extractHoverContent($, content) {
+  const hoverContent = $(content).find('.ww-into-text-hide p').text()
+  const totalClimbing = /Total climbing: ([0-9]+)m/.exec(hoverContent)
+  return {
+    totalClimbing: parseInt(totalClimbing[1], 10),
   }
 }
 

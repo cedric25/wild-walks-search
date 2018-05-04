@@ -154,5 +154,14 @@ describe('parse ', () => {
         expect(hike.elevationImage).to.match(/^https?:\/\/www\.wildwalks\.com\/wildwalks_custom\/walk_terrain\/.+\.png$/)
       })
     })
+
+    it('should give a correct total climbing of 38m for the first hike', function () {
+      // When
+      const results = parse(testData)
+
+      // Then
+      expect(results[0].totalClimbing).to.equal(38)
+    })
+
   })
 })

@@ -25,6 +25,13 @@ search.addWidget(
   })
 )
 
+search.addWidget(
+  instantsearch.widgets.rangeSlider({
+    container: '#range-slider-climbing',
+    attributeName: 'totalClimbing',
+  })
+)
+
 // initialize SearchBox
 search.addWidget(
   instantsearch.widgets.searchBox({
@@ -59,6 +66,10 @@ const hitTemplate = `
       <div class="hike-info-left">
         <p>{{distance.raw.value}} {{distance.raw.unit}} &nbsp;{{hikeType}}</p>
         <p>{{duration.raw.value}} {{duration.raw.unit}}</p>
+        <p>
+          {{totalClimbing}}m
+          <img src="./arrow-top-right-15.png" class="climbing-arrow" />
+        </p>
       </div>
       
       <div class="hike-info-right">
