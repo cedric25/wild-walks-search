@@ -64,10 +64,11 @@ function extractRightBoxInfo($, content) {
   // Difficulty
   const levelStr = $(leftBox).find('p').text()
   const difficulty = possibleDifficulties.indexOf(levelStr) + 1
+  const difficultyLabel = levelStr
 
   // Wheelchair
   const images = $(leftBox).find('img').get()
-  let wheelchair = 'none'
+  let wheelchair = false
   if (images.length === 2) {
     const imgSrc = $(images[1]).attr('src')
     if (/steep/.test(imgSrc)) {
@@ -83,6 +84,7 @@ function extractRightBoxInfo($, content) {
 
   return {
     difficulty,
+    difficultyLabel,
     wheelchair,
   }
 }

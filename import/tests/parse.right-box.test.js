@@ -9,7 +9,7 @@ describe('Right box', () => {
     const inputFilepath = path.join(__dirname, './test-data/input.html')
     const testData = fs.readFileSync(inputFilepath)
 
-    it('should give a string difficulty of "Very easy" for the first hike', function () {
+    it('should give a string difficulty of 1 for the first hike', function () {
       // When
       const results = parse(testData)
 
@@ -21,6 +21,20 @@ describe('Right box', () => {
       })
     })
 
+    it('should give a string difficulty label of "Very easy" for the first hike', function () {
+      // When
+      const results = parse(testData)
+
+      // Then
+      expect(results[0].difficultyLabel).to.equal('Very easy')
+      results.forEach(hike => {
+        expect(hike.difficultyLabel).to.be.ok
+        expect(hike.difficultyLabel).to.be.oneOf([
+          'Very easy', 'Easy track', 'Moderate track', 'Hard track', 'Experienced only'
+        ])
+      })
+    })
+
     it('should give a wheelchair access for the first hike', function () {
       // When
       const results = parse(testData)
@@ -28,9 +42,8 @@ describe('Right box', () => {
       // Then
       expect(results[0].wheelchair).to.equal('wheelchair')
       results.forEach(hike => {
-        expect(hike.wheelchair).to.be.ok
         expect(hike.wheelchair).to.be.oneOf([
-          'none', 'wheelchair', 'wheelchair_steep', 'wheelchair_rough', 'wheelchair_steep_rough'
+          false, 'wheelchair', 'wheelchair_steep', 'wheelchair_rough', 'wheelchair_steep_rough'
         ])
       })
     })
