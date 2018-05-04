@@ -1,5 +1,9 @@
 const cheerio = require('cheerio')
 
+const possibleDifficulties = [
+  'Very easy', 'Easy track', 'Moderate track', 'Hard track', 'Experienced only'
+]
+
 function parse(html) {
   const $ = cheerio.load(html)
 
@@ -11,6 +15,7 @@ function parseHikeHtml($, content) {
   const detailLink = $(content).find('.ww-box-htag-title a')
   const hikeDetailsLink = $(detailLink[0]).attr('href')
   const leftBox = extractLeftBoxInfo($, content)
+  const rigthBox = extractRightBoxInfo($, content)
   const rawMainImage = $(content).find('.ww-box-thumbnail-img')
   const rawElevationImage = $(content).find('.img-box-bottom')
   const elevationImage = $(rawElevationImage[0]).attr('src')
@@ -21,7 +26,7 @@ function parseHikeHtml($, content) {
     mainImage: $(rawMainImage[0]).attr('src'),
     elevationImage: `http://www.wildwalks.com${elevationImage}`,
   }
-  return Object.assign({}, main, leftBox)
+  return Object.assign({}, main, leftBox, rigthBox)
 }
 
 function extractLeftBoxInfo($, content) {
@@ -50,6 +55,35 @@ function extractLeftBoxInfo($, content) {
     hikeType,
     duration,
     accesses,
+  }
+}
+
+function extractRightBoxInfo($, content) {
+  const leftBox = $(content).find('.box-right')
+
+  // Difficulty
+  const levelStr = $(leftBox).find('p').text()
+  const difficulty = possibleDifficulties.indexOf(levelStr) + 1
+
+  // Wheelchair
+  const images = $(leftBox).find('img').get()
+  let wheelchair = 'none'
+  if (images.length === 2) {
+    const imgSrc = $(images[1]).attr('src')
+    if (/steep/.test(imgSrc)) {
+      wheelchair = 'wheelchair_steep'
+    } else if (/rough/.test(imgSrc)) {
+      wheelchair = 'wheelchair_rough'
+    } else if (/steep_rough/.test(imgSrc)) {
+      wheelchair = 'wheelchair_steep_rough'
+    } else {
+      wheelchair = 'wheelchair'
+    }
+  }
+
+  return {
+    difficulty,
+    wheelchair,
   }
 }
 
