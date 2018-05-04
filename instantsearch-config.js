@@ -8,6 +8,8 @@ const search = instantsearch({
 // initialize RefinementList
 addRefinementList(search, 'hikeType', '#refinement-hike-type')
 addRefinementList(search, 'accesses.by', '#refinement-accesses')
+addRefinementList(search, 'difficultyLabel', '#refinement-difficulty')
+addRefinementList(search, 'wheelchair', '#refinement-wheelchair')
 
 search.addWidget(
   instantsearch.widgets.rangeSlider({
@@ -54,7 +56,13 @@ const hitTemplate = `
         </div>
       </div>
       <div class="hike-info-right">
-        <img src="http://www.wildwalks.com/wildwalks_custom/icons/class1.png" class="access-image" />
+        {{#wheelchair}}
+          <img src="http://www.wildwalks.com/wildwalks_custom/icons/{{wheelchair}}.png" class="wheelchair-access-image" />
+        {{/wheelchair}}
+        <img src="http://www.wildwalks.com/wildwalks_custom/icons/class{{difficulty}}.png" class="difficulty-image" />
+        <div class="difficulty-label">
+          {{difficultyLabel}}
+        </div>
       </div>
     </div>
     <div class="elevation-image">
