@@ -30,7 +30,9 @@ function pushAlgolia(hikes) {
 
 try {
   getHikes()
-  console.log('result', result)
+    .then(() => {
+      console.log('Done!')
+    })
 } catch (err) {
   console.error(err)
 }
