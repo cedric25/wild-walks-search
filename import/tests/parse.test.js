@@ -66,10 +66,15 @@ describe('parse ', () => {
       const results = parse(testData)
 
       // Then
-      expect(results[0].distance).to.equal(556)
+      expect(results[0].distance).to.deep.equal({
+        meters: 556,
+        raw: { value: 556, unit: 'm' }
+      })
       results.forEach(hike => {
-        expect(hike.distance).to.be.ok
-        expect(hike.distance).to.be.above(10)
+        expect(hike.distance.meters).to.be.ok
+        expect(hike.distance.raw.value).to.be.ok
+        expect(hike.distance.raw.unit).to.be.oneOf(['m', 'km'])
+        expect(hike.distance.meters).to.be.above(10)
       })
     })
 

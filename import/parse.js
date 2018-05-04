@@ -90,7 +90,11 @@ function extractRightBoxInfo($, content) {
 }
 
 function parseDistance(value, unit) {
-  return unit === 'm' ? value : value * 1000
+  const meters = unit === 'm' ? value : value * 1000
+  return {
+    meters,
+    raw: { value, unit }
+  }
 }
 
 function parseDuration(value, unit) {

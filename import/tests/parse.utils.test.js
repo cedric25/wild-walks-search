@@ -13,7 +13,10 @@ describe('parseDistance()', () => {
       const result = parseDistance(value, unit)
 
       // Then
-      expect(result).to.equal(100)
+      expect(result).to.deep.equal({
+        meters: 100,
+        raw: { value: 100, unit: 'm' }
+      })
     })
   })
 
@@ -27,7 +30,10 @@ describe('parseDistance()', () => {
       const result = parseDistance(value, unit)
 
       // Then
-      expect(result).to.equal(20000)
+      expect(result).to.deep.equal({
+        meters: 20000,
+        raw: { value: 20, unit: 'km' }
+      })
     })
   })
 
