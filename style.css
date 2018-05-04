@@ -19,6 +19,14 @@ body {
 .top-banner .banner-title {
     margin: 0 30px;
 }
+.top-banner .banner-title h1 {
+    font-size: 1.2em;
+}
+@media (min-width: 650px) {
+    .top-banner .banner-title h1 {
+        font-size: 2em;
+    }
+}
 .top-banner .search-box {
     padding-left: 50px;
 }
@@ -40,6 +48,9 @@ body {
     border-right: 1px solid black;
     padding: 5px;
 }
+.left-menu h3 {
+    margin: 15px 0 7px 15px;
+}
 .content {
     grid-column: 2;
     grid-row: 2;
@@ -57,12 +68,19 @@ body {
 }
 
 .facet-box {
-    margin: 15px;
+    margin: 0 15px;
     padding: 10px;
     border: 1px solid grey;
 }
 
 /* ========================= HITS ========================= */
+
+.ais-refinement-list--count {
+    color: #d84627;
+}
+.ais-refinement-list--label {
+    font-size: 0.9em;
+}
 
 .hits .ais-hits {
     display: grid;
