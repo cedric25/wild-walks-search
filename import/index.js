@@ -16,8 +16,11 @@ const hikesList = [
 
 async function getHikes() {
   for (let i = 0; i < hikesList.length; i++) {
-    const rawHtml = await rp.get(hikesList[0])
+    console.log(' --- Get page:', hikesList[i])
+    const rawHtml = await rp.get(hikesList[i])
+    console.log('Start parsing...')
     const data = parse(rawHtml)
+    console.log('Start indexing to Algolia...')
     await pushAlgolia(data)
   }
 }
