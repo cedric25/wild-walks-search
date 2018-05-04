@@ -32,7 +32,9 @@ function extractLeftBoxInfo($, content) {
       const img = $(access).find('img')
       const href = $(img).attr('src')
       const matches = /white_([a-z]+).png/g.exec(href)
-      return matches[1]
+      return {
+        by: matches[1],
+      }
     }).get()
   const rawFirstLine = $(leftBox).find('p')[0].children[0].data
   const rawSecondLine = $(leftBox).find('p')[0].children[2].data
