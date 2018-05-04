@@ -1,7 +1,7 @@
 const cheerio = require('cheerio')
 
 const possibleDifficulties = [
-  'Very easy', 'Easy track', 'Moderate track', 'Hard track', 'Experienced only'
+  'Very easy', 'Easy track', 'Moderate track', 'Hard track', 'Experienced only', 'Very experienced only'
 ]
 
 function parse(html) {
