@@ -112,11 +112,14 @@ describe('parse ', () => {
       const results = parse(testData)
 
       // Then
-      expect(results[0].accesses).to.deep.equal([ 'car', 'bus' ])
+      expect(results[0].accesses).to.deep.equal([
+        { by: 'car' },
+        { by: 'bus' },
+      ])
       results.forEach(hike => {
         expect(hike.accesses).to.not.be.empty
         hike.accesses.forEach(access => {
-          expect(access).to.be.oneOf(['car', 'bus', 'train', 'ferry'])
+          expect(access.by).to.be.oneOf(['car', 'bus', 'train', 'ferry'])
         })
       })
     })

@@ -74,6 +74,7 @@ describe('parseDuration()', () => {
       })
     })
   })
+
   describe('When giving 3 and days', () => {
     it('should give us 1440', function () {
       // Given
