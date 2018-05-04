@@ -19,6 +19,9 @@ body {
 .top-banner .banner-title {
     margin: 0 30px;
 }
+.top-banner .banner-title a {
+    text-decoration: none;
+}
 .top-banner .banner-title h1 {
     font-size: 1.2em;
 }
