@@ -7,27 +7,44 @@ body {
     display: grid;
     grid-template-columns: 200px 1fr;
 }
-.top-banner,
-.left-menu,
-.content {
-
-}
 .top-banner {
     grid-column: 1 / 3;
     grid-row: 1;
     height: 80px;
     background-color: #d84627;
+    display: flex;
+    align-items: center;
 }
+.top-banner .banner-title {
+    margin: 0 30px;
+}
+.top-banner .search-box {
+    padding-left: 50px;
+}
+.top-banner .search-box .ais-search-box .ais-search-box--input {
+    font-size: 1.2em;
+    padding-left: 25px;
+}
+.top-banner .search-box .ais-search-box--magnifier {
+    margin-top: 4px;
+}
+.top-banner .search-box .ais-search-box--reset {
+    top: 9px;
+    right: -20px;
+}
+
 .left-menu {
     grid-column: 1;
     grid-row: 2;
-    border: 1px solid black;
+    border-right: 1px solid black;
     padding: 5px;
 }
 .content {
     grid-column: 2;
     grid-row: 2;
     padding: 15px;
+    max-width: 960px;
+    margin: 0 auto;
 }
 
 /* ----- */
@@ -45,18 +62,31 @@ body {
     border: 1px solid grey;
 }
 
-/* ----- HITS ----- */
+/* ========================= HITS ========================= */
 
 .hits .ais-hits {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 5px 15px;
+    grid-template-columns: 1fr;
+    grid-gap: 20px 25px;
 }
-.one-hit {
+@media (min-width: 650px) {
+    .hits .ais-hits {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 1000px) {
+    .hits .ais-hits {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+.hits .ais-hits .ais-hits--item .one-hit {
     position: relative;
     border: solid 1px #d9d9de;
     border-radius: 10px 10px 0 0;
+    max-width: 300px; /* Width of hike main image */
 }
+
+/* ------------------------- HIKE-TITLE ------------------------- */
 .one-hit .hike-title {
     position: absolute;
     width: 93%;
@@ -74,32 +104,58 @@ body {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+/* ------------------------- HIKE-MAIN-IMAGE ------------------------- */
 .one-hit .hike-img img {
+    max-width: 100%;
     border-radius: 10px 10px 0 0;
 }
+
+/* ------------------------- HIKE-INFO ------------------------- */
 .one-hit .hike-info {
     position: relative;
-    top: -55px;
+    margin-top: -55px;
     padding: 5px;
+    display: flex;
 }
-.one-hit .hike-info .access-image {
+.one-hit .hike-info .hike-info-left {
+    flex: 1;
+}
+/* ----- Left ----- */
+.one-hit .hike-info .hike-info-left .access-image {
     width: 40px;
     height: 40px;
 }
-.one-hit .hike-info .length-type-duration {
+.one-hit .hike-info .hike-info-left .length-type-duration {
     margin: 10px 0 0 15px;
     font-weight: bold;
     font-size: 0.9em;
 }
-.one-hit .hike-info .length-type-duration p {
+.one-hit .hike-info .hike-info-left .length-type-duration p {
     margin: 0;
 }
-.one-hit .hike-info .length-type-duration p:first-child {
+.one-hit .hike-info .hike-info-left .length-type-duration p:first-child {
     margin-bottom: 5px;
 }
+/* ----- Right ----- */
+.one-hit .hike-info .hike-info-right {
+    text-align: right;
+}
+.one-hit .hike-info .hike-info-right img {
+    top: 25px;
+    position: relative;
+    width: 70px;
+    height: 70px;
+}
 
-@media (min-width: 850px) {
-    .hits .ais-hits {
-        grid-template-columns: repeat(3, 1fr);
-    }
+/* ------------------------- HIKE-ELEVATION-IMAGE ------------------------- */
+.elevation-image {
+    overflow: hidden;
+    margin-top: -10px;
+}
+.elevation-image img {
+    max-width: 101%;
+    bottom: -13px;
+    position: relative;
+    left: -2px;
 }

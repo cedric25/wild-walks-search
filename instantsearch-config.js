@@ -7,7 +7,7 @@ const search = instantsearch({
 
 // initialize RefinementList
 addRefinementList(search, 'hikeType', '#refinement-hike-type')
-addRefinementList(search, 'accesses', '#refinement-accesses')
+addRefinementList(search, 'accesses.by', '#refinement-accesses')
 
 search.addWidget(
   instantsearch.widgets.rangeSlider({
@@ -44,27 +44,34 @@ const hitTemplate = `
       </a>
     </div>
     <div class="hike-info">
-      {{#accesses}}
-        <img src="http://www.wildwalks.com//wildwalks_custom/icons/white_{{by}}.png" class="access-image" />
-      {{/accesses}}
-      <div class="length-type-duration">
-        <p>{{distance}} m {{hikeType}}</p>
-        <p>{{duration.raw.value}} {{duration.raw.unit}}</p>
+      <div class="hike-info-left">
+        {{#accesses}}
+          <img src="http://www.wildwalks.com//wildwalks_custom/icons/white_{{by}}.png" class="access-image" />
+        {{/accesses}}
+        <div class="length-type-duration">
+          <p>{{distance}} m {{hikeType}}</p>
+          <p>{{duration.raw.value}} {{duration.raw.unit}}</p>
+        </div>
       </div>
+      <div class="hike-info-right">
+        <img src="http://www.wildwalks.com/wildwalks_custom/icons/class1.png" class="access-image" />
+      </div>
+    </div>
+    <div class="elevation-image">
+      <img src="{{elevationImage}}" />
     </div>
   </div>
 `
 
 // initialize hits widget
-search.addWidget(
-  instantsearch.widgets.hits({
-    container: '#hits',
-    templates: {
-      empty: 'No results',
-      item: hitTemplate,
-    }
-  })
-)
+const hitsWidget = instantsearch.widgets.hits({
+  container: '#hits',
+  templates: {
+    empty: '<strong>No results :(</strong>',
+    item: hitTemplate,
+  },
+})
+search.addWidget(hitsWidget)
 
 search.start()
 
