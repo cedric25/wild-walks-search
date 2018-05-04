@@ -14,7 +14,7 @@ addRefinementList(search, 'wheelchair', '#refinement-wheelchair')
 search.addWidget(
   instantsearch.widgets.rangeSlider({
     container: '#range-slider-distance',
-    attributeName: 'distance',
+    attributeName: 'distance.meters',
   })
 )
 
@@ -35,26 +35,32 @@ search.addWidget(
 
 const hitTemplate = `
   <div class="one-hit">
+  
     <a href="{{detailLink}}" target="_blank">
       <div class="hike-title">
         <h6>{{ name }}</h6>
       </div>
     </a>
+    
     <div class="hike-img">
       <a href="{{detailLink}}" target="_blank">
         <img src="{{mainImage}}">
       </a>
     </div>
+    
+    <div class="accesses">
+      {{#accesses}}
+        <img src="http://www.wildwalks.com//wildwalks_custom/icons/white_{{by}}.png" class="access-image" />
+      {{/accesses}}
+    </div>
+    
     <div class="hike-info">
+    
       <div class="hike-info-left">
-        {{#accesses}}
-          <img src="http://www.wildwalks.com//wildwalks_custom/icons/white_{{by}}.png" class="access-image" />
-        {{/accesses}}
-        <div class="length-type-duration">
-          <p>{{distance}} m {{hikeType}}</p>
-          <p>{{duration.raw.value}} {{duration.raw.unit}}</p>
-        </div>
+        <p>{{distance.raw.value}} {{distance.raw.unit}} &nbsp;{{hikeType}}</p>
+        <p>{{duration.raw.value}} {{duration.raw.unit}}</p>
       </div>
+      
       <div class="hike-info-right">
         {{#wheelchair}}
           <img src="http://www.wildwalks.com/wildwalks_custom/icons/{{wheelchair}}.png" class="wheelchair-access-image" />
@@ -64,6 +70,7 @@ const hitTemplate = `
           {{difficultyLabel}}
         </div>
       </div>
+      
     </div>
     <div class="elevation-image">
       <img src="{{elevationImage}}" />

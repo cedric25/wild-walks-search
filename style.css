@@ -129,36 +129,45 @@ body {
     border-radius: 10px 10px 0 0;
 }
 
-/* ------------------------- HIKE-INFO ------------------------- */
-.one-hit .hike-info {
+/* ------------------------- HIKE-ACCESSES ------------------------- */
+.one-hit .accesses {
     position: relative;
-    margin-top: -55px;
+    top: -53px;
     padding: 5px;
-    display: flex;
-    font-size: 0.9em;
+    height: 0;
 }
-.one-hit .hike-info .hike-info-left {
-    flex: 1;
-}
-/* ----- Left ----- */
-.one-hit .hike-info .hike-info-left .access-image {
+.one-hit .accesses .access-image {
     width: 40px;
     height: 40px;
 }
-.one-hit .hike-info .hike-info-left .length-type-duration {
-    margin: 12px 0 0 10px;
+
+/* ------------------------- HIKE-INFO ------------------------- */
+.one-hit .hike-info {
+    display: flex;
+    font-size: 0.9em;
+    margin-top: -5px;
+}
+.one-hit .hike-info > div {
+    flex: 1;
+}
+/* ----- Left ----- */
+.one-hit .hike-info .hike-info-left {
+    padding-left: 15px;
     font-weight: bold;
     font-size: 0.9em;
 }
-.one-hit .hike-info .hike-info-left .length-type-duration p {
+.one-hit .hike-info .hike-info-left p {
     margin: 0;
 }
-.one-hit .hike-info .hike-info-left .length-type-duration p:first-child {
+.one-hit .hike-info .hike-info-left p:first-child {
     margin-bottom: 5px;
 }
 /* ----- Right ----- */
 .one-hit .hike-info .hike-info-right {
     text-align: right;
+    margin-top: -53px;
+    margin-right: 5px;
+    z-index: 2;
 }
 .one-hit .hike-info .hike-info-right .wheelchair-access-image,
 .one-hit .hike-info .hike-info-right .difficulty-image {
@@ -175,6 +184,7 @@ body {
 }
 .one-hit .hike-info .hike-info-right .difficulty-label {
     margin-top: 25px;
+    font-size: 0.9em;
 }
 
 /* ------------------------- HIKE-ELEVATION-IMAGE ------------------------- */
