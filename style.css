@@ -77,6 +77,26 @@ body {
 .one-hit .hike-img img {
     border-radius: 10px 10px 0 0;
 }
+.one-hit .hike-info {
+    position: relative;
+    top: -55px;
+    padding: 5px;
+}
+.one-hit .hike-info .access-image {
+    width: 40px;
+    height: 40px;
+}
+.one-hit .hike-info .length-type-duration {
+    margin: 10px 0 0 15px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+.one-hit .hike-info .length-type-duration p {
+    margin: 0;
+}
+.one-hit .hike-info .length-type-duration p:first-child {
+    margin-bottom: 5px;
+}
 
 @media (min-width: 850px) {
     .hits .ais-hits {

@@ -44,7 +44,13 @@ const hitTemplate = `
       </a>
     </div>
     <div class="hike-info">
-      {{ name }}
+      {{#accesses}}
+        <img src="http://www.wildwalks.com//wildwalks_custom/icons/white_{{by}}.png" class="access-image" />
+      {{/accesses}}
+      <div class="length-type-duration">
+        <p>{{distance}} m {{hikeType}}</p>
+        <p>{{duration.raw.value}} {{duration.raw.unit}}</p>
+      </div>
     </div>
   </div>
 `
