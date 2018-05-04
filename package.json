@@ -1,15 +1,22 @@
 {
   "name": "wild-walks",
   "version": "1.0.0",
-  "description": "",
+  "description": "An attempt to have a multi-criteria search engine on top of http://www.wildwalks.com/",
   "main": "index.js",
+  "keywords": ["search", "algolia", "hiking"],
+  "author": {
+    "name": "Cédric Nicoloso",
+    "email": "cedric.nicoloso@gmail.com"
+  },
+  "contributors": [{
+    "name": "Thibaut Géry",
+    "email": "thibaut.gery@gmail.com"
+  }],
+  "license": "ISC",
   "scripts": {
     "start": "node index.js",
     "test": "mocha import/tests/*"
   },
-  "keywords": [],
-  "author": "Cedric Nicoloso <cedric.nicoloso@gmail.com>",
-  "license": "ISC",
   "dependencies": {
     "algoliasearch": "^3.27.0",
     "cheerio": "^1.0.0-rc.2",
