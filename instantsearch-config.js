@@ -31,19 +31,31 @@ search.addWidget(
   })
 )
 
+const hitTemplate = `
+  <div class="one-hit">
+    <a href="{{detailLink}}" target="_blank">
+      <div class="hike-title">
+        <h6>{{ name }}</h6>
+      </div>
+    </a>
+    <div class="hike-img">
+      <a href="{{detailLink}}" target="_blank">
+        <img src="{{mainImage}}">
+      </a>
+    </div>
+    <div class="hike-info">
+      {{ name }}
+    </div>
+  </div>
+`
+
 // initialize hits widget
 search.addWidget(
   instantsearch.widgets.hits({
     container: '#hits',
     templates: {
       empty: 'No results',
-      item: `
-        <div>
-          <a href="{{ detailLink }}" target="_blank">
-            Hit {{ name }}
-          </a>: {{{ _highlightResult.name.value }}}
-        </div>
-      `
+      item: hitTemplate,
     }
   })
 )
