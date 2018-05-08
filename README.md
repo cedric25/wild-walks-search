@@ -2,6 +2,8 @@
 
 An attempt to build a multi-criteria search feature on top of http://www.wildwalks.com/
 
+https://cedric25.github.io/wild-walks-search/
+
 ![alt text](wild-walks-search.png)
 
 ## Web scraping
@@ -25,6 +27,10 @@ Static HTML / CSS / JS.
 We tried to recreate the original style as much as possible.
 
 Refinement lists and range sliders come from Algolia [instantsearch](https://github.com/algolia/instantsearch.js/) library.
+
+### Deployed
+
+On Github pages: [https://cedric25.github.io/wild-walks-search/](https://cedric25.github.io/wild-walks-search/)
 
 ## Authors
 
