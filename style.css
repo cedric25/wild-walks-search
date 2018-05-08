@@ -44,6 +44,11 @@ body {
     top: 9px;
     right: -20px;
 }
+.top-banner .algolia-icon-wrap {
+    margin-left: 40px;
+    top: 2px;
+    position: relative;
+}
 
 .left-menu {
     grid-column: 1;
@@ -74,6 +79,24 @@ body {
     margin: 0 15px;
     padding: 10px;
     border: 1px solid grey;
+}
+
+.refinement-hike-type {
+    height: 60px;
+}
+.refinement-accesses {
+    height: 80px;
+}
+.range-slider-distance,
+.range-slider-duration,
+.range-slider-climbing {
+    height: 72px;
+}
+.refinement-difficulty {
+    height: 120px;
+}
+.refinement-wheelchair {
+    height: 80px;
 }
 
 /* ========================= HITS ========================= */
